@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Школа программирования КОДИТ — Выпускники</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.5);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #e94560;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #a0a0a0;
+            margin-top: 5px;
+            font-weight: 300;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 12px 35px;
+            border: 2px solid #e94560;
+            background: transparent;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(233, 69, 96, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: #e94560;
+            box-shadow: 0 5px 25px rgba(233, 69, 96, 0.4);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Graduates Section */
+        .graduates-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .section-title span {
+            color: #e94560;
+        }
+
+        .graduates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .graduate-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .graduate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(233, 69, 96, 0.5);
+        }
+
+        .graduate-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #e94560;
+            box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .graduate-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .graduate-role {
+            color: #e94560;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .rating-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .rating-label {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stars {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .rating-score {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e94560;
+        }
+
+        .rating-text {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: rgba(233, 69, 96, 0.2);
+            color: #e94560;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Program Section */
+        .program-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .program-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .program-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .program-header h2 span {
+            color: #e94560;
+        }
+
+        .program-header p {
+            color: #a0a0a0;
+            font-size: 1rem;
+        }
+
+        .modules-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .modules-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #e94560, #533483);
+            border-radius: 3px;
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateX(10px);
+            border-color: rgba(233, 69, 96, 0.5);
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 35px;
+            width: 16px;
+            height: 16px;
+            background: #e94560;
+            border-radius: 50%;
+            border: 3px solid #1a1a2e;
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+        }
+
+        .module-number {
+            display: inline-block;
+            background: #e94560;
+            color: #fff;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .module-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .module-topics {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .module-topics li {
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #d0d0d0;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .module-topics li::before {
+            content: '▸';
+            position: absolute;
+            left: 12px;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        .module-result {
+            background: rgba(233, 69, 96, 0.1);
+            border-left: 4px solid #e94560;
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.9rem;
+            color: #d0d0d0;
+            line-height: 1.6;
+        }
+
+        .module-result strong {
+            color: #e94560;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer span {
+            color: #e94560;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            .graduates-grid {
+                grid-template-columns: 1fr;
+            }
+            .module-topics {
+                grid-template-columns: 1fr;
+            }
+            .modules-timeline {
+                padding-left: 30px;
+            }
+            .module-card::before {
+                left: -23px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">КОДИТ</div>
+        <div class="subtitle">Школа программирования для детей и подростков</div>
+    </header>
+
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="openTab('graduates')">Выпускники</button>
+        <button class="tab-btn" onclick="openTab('program')">Программа обучения</button>
+    </div>
+
+    <!-- Tab 1: Graduates -->
+    <div id="graduates" class="tab-content active">
+        <div class="graduates-section">
+            <h2 class="section-title">Наши выпускники <span>2026</span></h2>
+            <div class="graduates-grid">
+                
+                <!-- Артемий -->
+                <div class="graduate-card">
+                    <img src="image-4.jpeg" alt="Артемий" class="graduate-img">
+                    <div class="graduate-name">Артемий</div>
+                    <div class="graduate-role">Python-разработчик</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Telegram Bot</span>
+                        <span class="skill-tag">Pygame</span>
+                        <span class="skill-tag">Файлы</span>
+                    </div>
+                    <div class="rating-container">
+                        <div class="rating-label">Оценка обучения</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="rating-score">9.8 / 10</div>
+                        <div class="rating-text">
+                            "Отличная школа! Научился создавать чат-ботов и 2D-игры. Преподаватели объясняют доступно и интересно."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Алексей -->
+                <div class="graduate-card">
+                    <img src="image-3.jpeg" alt="Алексей" class="graduate-img">
+                    <div class="graduate-name">Алексей</div>
+                    <div class="graduate-role">Junior Developer</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Циклы</span>
+                        <span class="skill-tag">Списки</span>
+                        <span class="skill-tag">Логика</span>
+                    </div>
+                    <div class="rating-container">
+                        <div class="rating-label">Оценка обучения</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="rating-score">9.9 / 10</div>
+                        <div class="rating-text">
+                            "Программа очень структурированная. Особенно понравились проекты — настоящая практика, а не просто теория!"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Родион -->
+                <div class="graduate-card">
+                    <img src="image-5.jpeg" alt="Родион" class="graduate-img">
+                    <div class="graduate-name">Родион</div>
+                    <div class="graduate-role">Game Developer</div>
+                    <div class="skills-tags">
+                        <span class="skill-tag">Pygame</span>
+                        <span class="skill-tag">Анимация</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                    <div class="rating-container">
+                        <div class="rating-label">Оценка обучения</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="rating-score">9.7 / 10</div>
+                        <div class="rating-text">
+                            "Создал свою первую игру уже на 3-м модуле! Теперь увлекаюсь геймдевом и планирую развиваться дальше."
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 2: Program -->
+    <div id="program" class="tab-content">
+        <div class="program-section">
+            <div class="program-header">
+                <h2>Программа обучения <span>Python</span></h2>
+                <p>4 модуля — от первой строки кода до собственного проекта</p>
+            </div>
+
+            <div class="modules-timeline">
+                
+                <!-- Module 1 -->
+                <div class="module-card">
+                    <div class="module-number">Модуль 1</div>
+                    <div class="module-title">Знакомство со средой программирования</div>
+                    <ul class="module-topics">
+                        <li>Введение в Python</li>
+                        <li>Подготовка среды программирования</li>
+                        <li>Команда print</li>
+                        <li>Строки и числа</li>
+                        <li>Переменные и базовые структуры данных</li>
+                        <li>Базовые правила переменных</li>
+                        <li>Кавычки, комментарии, табуляция</li>
+                        <li>Библиотека turtle</li>
+                        <li>Ввод строк, чисел, обработка</li>
+                        <li>Команда input</li>
+                        <li>Строковый и числовой ввод int/str/float</li>
+                        <li>Арифметические операции</li>
+                        <li>Условные выражения</li>
+                        <li>Булевые значения</li>
+                        <li>Логика условного оператора if</li>
+                        <li>Логические выражения и практика</li>
+                        <li>if / elif / else</li>
+                        <li>Операторы сравнения and / or</li>
+                        <li>Отступы и анализ ошибок</li>
+                        <li>Цикл while</li>
+                        <li>Методы string lower(), upper()</li>
+                        <li>Библиотеки random / sleep</li>
+                        <li>Цикл for и функция range</li>
+                    </ul>
+                    <div class="module-result">
+                        <strong>Результат:</strong> ученики научатся писать код в консоле, использовать встроенные инструменты Python для получения информации от пользователя, применять содержательные имена переменных, исправлять синтаксические ошибки, писать условия и логические цепочки — и создадут свою первую программу.
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-card">
+                    <div class="module-number">Модуль 2</div>
+                    <div class="module-title">Логика, циклы и списки</div>
+                    <ul class="module-topics">
+                        <li>Цикл while, итерация</li>
+                        <li>Обработка ошибок try / except</li>
+                        <li>Ключевое слово break и continue</li>
+                        <li>Вложенные циклы</li>
+                        <li>Знакомство со списками</li>
+                        <li>Изменение, добавление и удаление элементов</li>
+                        <li>Упорядочение и длина списка</li>
+                        <li>Ошибки индексирования</li>
+                    </ul>
+                    <div class="module-result">
+                        <strong>Результат:</strong> ученики начнут работать с циклами и управлять продолжительностью программ, установят новые библиотеки, научатся эффективно работать со списками в циклах и использовать отступы для определения структуры кода.
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="module-card">
+                    <div class="module-number">Модуль 3</div>
+                    <div class="module-title">Функции и разработка игры</div>
+                    <ul class="module-topics">
+                        <li>Знакомство с функцией</li>
+                        <li>Передача аргументов и вызов функции</li>
+                        <li>Возвращаемое значение return</li>
+                        <li>Создание программы-помощника</li>
+                        <li>Знакомство с файлами</li>
+                        <li>Чтение из файла, запись в файл</li>
+                        <li>Сохранение данных в файле</li>
+                        <li>Менеджер контекста with / as</li>
+                        <li>Библиотека pygame</li>
+                        <li>Геометрические примитивы и анимация</li>
+                        <li>Управление элементами</li>
+                        <li>Загрузка изображений в игру</li>
+                        <li>Взаимодействие элементов в игре</li>
+                        <li>Клонирование элементов в игре</li>
+                    </ul>
+                    <div class="module-result">
+                        <strong>Результат:</strong> ученики научатся писать функции и передавать аргументы, узнают, как работает вызов функции и как работать с файлами с помощью кода. Все знания применят на практике — создадут свою первую 2D-игру.
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module-card">
+                    <div class="module-number">Модуль 4</div>
+                    <div class="module-title">Telegram bot и работа над своим проектом</div>
+                    <ul class="module-topics">
+                        <li>Библиотека telegrambotapi</li>
+                        <li>Условия в чат-боте</li>
+                        <li>Функции и возврат функций в чат-боте</li>
+                        <li>Ветки чат-бота</li>
+                        <li>Inline URL кнопки чат-бота</li>
+                        <li>Обычные кнопки чат-бота</li>
+                        <li>Работа списков в чат-боте</li>
+                        <li>Работа с файлами в чат-боте</li>
+                        <li>Библиотеки для чат-бота</li>
+                        <li>Проектирование и реализация проекта</li>
+                        <li>Финальная презентация проекта родителям</li>
+                    </ul>
+                    <div class="module-result">
+                        <strong>Результат:</strong> ученики изучат технологию создания чат-бота на Python, познакомятся с архитектурой построения диалогов с пользователями, научатся создавать кнопки и сделают несколько полноценных ботов в Telegram.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Школа программирования <span>КОДИТ</span> © 2026
+    </footer>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tabs
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            // Remove active class from all buttons
+            var buttons = document.getElementsByClassName('tab-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            
+            // Show current tab and activate button
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

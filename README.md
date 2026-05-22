@@ -128,4 +128,3 @@ kodit-graduates/
 <p align="center">
   Сделано с ❤️ в школе программирования <strong>КОДИТ</strong>
 </p>
-'''
